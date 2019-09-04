@@ -42,3 +42,21 @@ app.get('/forms', (request, response) => {
     response.send(result);
   });
 });
+
+// Shortcode
+
+// -- Calling API & Storing Data
+// API Call to Formstack Database
+// Pull all information into object
+// Parse data, pull out reqs, store in object
+// Call data check function
+// Store data to database
+
+//  -- Data Checking
+// Pull old data
+// Delete previous old data
+// Store old data in new database section
+
+//  -- API Endpoints
+// Get will pull all new clean data in one hit
+// GetOld will pull all old clean data in one hit
