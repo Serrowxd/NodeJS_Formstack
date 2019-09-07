@@ -4,7 +4,9 @@ const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectID;
 let apiConst = require('./apiConst.json');
 
-const CONNECTION_URL = `mongodb+srv://${apiConst.DB_USER}:${apiConst.DB_PASS}@serrowcluster-tdqv2.mongodb.net/test?retryWrites=true&w=majority`;
+const CONNECTION_URL = `mongodb+srv://${apiConst.DB_USER}:${
+  apiConst.DB_PASS
+}@serrowcluster-tdqv2.mongodb.net/test?retryWrites=true&w=majority`;
 const DATABASE_NAME = 'Formstack';
 
 var app = Express();
@@ -15,14 +17,18 @@ app.use(BodyParser.urlencoded({ extended: true }));
 var database, collection;
 
 app.listen(3000, () => {
-  MongoClient.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true }, (error, client) => {
-    if (error) {
-      throw error;
+  MongoClient.connect(
+    CONNECTION_URL,
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    (error, client) => {
+      if (error) {
+        throw error;
+      }
+      database = client.db(DATABASE_NAME);
+      collection = database.collection('forms');
+      console.log('Connected to `' + DATABASE_NAME + '`!');
     }
-    database = client.db(DATABASE_NAME);
-    collection = database.collection('forms');
-    console.log('Connected to `' + DATABASE_NAME + '`!');
-  });
+  );
 });
 
 app.post('/form', (request, response) => {
@@ -48,14 +54,24 @@ app.get('/forms', (request, response) => {
 // -- Calling API & Storing Data
 // API Call to Formstack Database
 // Pull all information into object
+
+function GetAllData() {
+  for (let i = 0; i > Object.itemCount; i++) {
+    CleanData(Object.array[i]);
+  }
+}
+
+function CleanData(data) {
+  data.map(item => {
+    // Clean excess data
+    // Store all data in holder under new key-value pairs
+    // return clean data?
+  });
+}
+
 // Parse data, pull out reqs, store in object
 // Call data check function
 // Store data to database
-
-//  -- Data Checking
-// Pull old data
-// Delete previous old data
-// Store old data in new database section
 
 //  -- API Endpoints
 // Get will pull all new clean data in one hit
